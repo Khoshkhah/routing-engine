@@ -1,50 +1,78 @@
 # Routing Engine
 
-A Python query engine for shortest path routing using H3 spatial hierarchy.
+H3-based hierarchical routing engine in Python and C++.
 
 ## Overview
 
-This project implements bidirectional Dijkstra search algorithms for querying precomputed shortcuts. It serves as a Python prototype before production C++ implementation.
+This project implements bidirectional search algorithms for shortest path routing using H3 spatial hierarchy. The Python prototype validates the algorithms, and the C++ implementation provides production performance.
 
 **Input**: Shortcut Parquet files from [shortcuts-generation](../shortcuts-generation)
+
+## Quick Start
+
+### Python (Prototype)
+
+```bash
+# Create and activate environment
+conda create -n routing-engine python=3.10
+conda activate routing-engine
+pip install -r requirements.txt
+
+# Run notebook
+jupyter notebook notebooks/routing_prototype.ipynb
+```
+
+### C++ (Production)
+
+```bash
+# Activate environment with C++ deps
+conda activate routing-engine
+conda install -c conda-forge cmake ninja compilers arrow-cpp
+
+# Install H3 (if not present)
+./scripts/install_h3.sh
+
+# Build
+./scripts/build.sh
+
+# Run query
+./cpp/build/routing_engine \
+    --shortcuts /path/to/shortcuts \
+    --edges /path/to/edges.csv \
+    --source 100 --target 200
+```
 
 ## Project Structure
 
 ```
 routing-engine/
-├── docs/
-│   ├── data_formats.md           # Input/output schemas
+├── cpp/                           # C++ implementation
+│   ├── CMakeLists.txt
+│   ├── include/
+│   │   ├── shortcut_graph.hpp
+│   │   └── h3_utils.hpp
+│   └── src/
+│       ├── shortcut_graph.cpp
+│       ├── h3_utils.cpp
+│       └── main.cpp
+├── docs/                          # Algorithm documentation
+│   ├── data_formats.md
 │   └── algorithms/
-│       ├── one_to_one_classic.md # Basic bidirectional Dijkstra
-│       ├── one_to_one_pruned.md  # H3-filtered pruned search
-│       └── many_to_many.md       # Multi-source/target routing
-├── notebooks/
-│   ├── routing_prototype.ipynb   # Algorithm development
-│   └── validation.ipynb          # Correctness testing
-├── src/
-│   ├── shortcut_graph.py         # Graph loading
-│   ├── query.py                  # Routing algorithms
-│   └── h3_utils.py               # H3 helpers
-└── tests/
-```
-
-## Quick Start
-
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Run prototype notebook
-jupyter notebook notebooks/routing_prototype.ipynb
+├── notebooks/                     # Python prototype
+│   └── routing_prototype.ipynb
+├── scripts/
+│   ├── install_h3.sh             # Build H3 from source
+│   └── build.sh                  # Build C++ project
+└── requirements.txt
 ```
 
 ## Algorithms
 
 | Algorithm | Description | Use Case |
 |-----------|-------------|----------|
-| **One-to-One Classic** | Bidirectional Dijkstra with `inside` filtering | Single source/target |
-| **One-to-One Pruned** | + H3 hierarchy `parent_check` pruning | Faster single queries |
-| **Many-to-Many** | Multi-source/target initialization | KNN routing |
+| **Classic** | Bidirectional Dijkstra with `inside` filtering | Baseline |
+| **Pruned** | + H3 hierarchy `parent_check` pruning | Faster single queries |
+| **Multi** | Multi-source/target initialization | KNN routing |
 
 ## Related Projects
 

@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/kaveh/projects/routing-engine/cpp/build",
+  "command": "/home/kaveh/miniconda3/envs/routing-engine/bin/x86_64-conda-linux-gnu-c++ -I/home/kaveh/projects/routing-engine/cpp/include -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/kaveh/miniconda3/envs/routing-engine/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/routing_lib.dir/src/shortcut_graph.cpp.o -c /home/kaveh/projects/routing-engine/cpp/src/shortcut_graph.cpp",
+  "file": "/home/kaveh/projects/routing-engine/cpp/src/shortcut_graph.cpp",
+  "output": "/home/kaveh/projects/routing-engine/cpp/build/CMakeFiles/routing_lib.dir/src/shortcut_graph.cpp.o"
+},
+{
+  "directory": "/home/kaveh/projects/routing-engine/cpp/build",
+  "command": "/home/kaveh/miniconda3/envs/routing-engine/bin/x86_64-conda-linux-gnu-c++ -I/home/kaveh/projects/routing-engine/cpp/include -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/kaveh/miniconda3/envs/routing-engine/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/routing_lib.dir/src/h3_utils.cpp.o -c /home/kaveh/projects/routing-engine/cpp/src/h3_utils.cpp",
+  "file": "/home/kaveh/projects/routing-engine/cpp/src/h3_utils.cpp",
+  "output": "/home/kaveh/projects/routing-engine/cpp/build/CMakeFiles/routing_lib.dir/src/h3_utils.cpp.o"
+},
+{
+  "directory": "/home/kaveh/projects/routing-engine/cpp/build",
+  "command": "/home/kaveh/miniconda3/envs/routing-engine/bin/x86_64-conda-linux-gnu-c++ -I/home/kaveh/projects/routing-engine/cpp/include -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/kaveh/miniconda3/envs/routing-engine/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/routing_engine.dir/src/main.cpp.o -c /home/kaveh/projects/routing-engine/cpp/src/main.cpp",
+  "file": "/home/kaveh/projects/routing-engine/cpp/src/main.cpp",
+  "output": "/home/kaveh/projects/routing-engine/cpp/build/CMakeFiles/routing_engine.dir/src/main.cpp.o"
+}
+]
