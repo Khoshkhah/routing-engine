@@ -1,10 +1,15 @@
 # Routing Engine
 
-A Python query engine for shortest path routing on Contraction Hierarchies (CH).
+A Python query engine for shortest path routing on **H3 Spatial Hierarchy** shortcuts.
 
 ## Overview
 
-This project implements bidirectional Dijkstra search algorithms for querying precomputed CH shortcuts. It serves as a Python prototype before production C++ implementation.
+This project implements bidirectional search algorithms for querying precomputed hierarchical shortcuts. The hierarchy is based on **H3 hexagonal grid resolutions** (not node contraction like traditional CH).
+
+> [!NOTE]
+> **Not Contraction Hierarchies (CH)**
+> 
+> This uses H3 spatial tree decomposition instead of node contraction order. See [tree_decomposition.md](../shortcuts-generation/docs/tree_decomposition.md) for theory.
 
 **Input**: Shortcut Parquet files from [shortcuts-generation](../shortcuts-generation)
 

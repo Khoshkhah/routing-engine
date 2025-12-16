@@ -1,10 +1,15 @@
 # One-to-One Pruned Algorithm
 
-Enhanced bidirectional Dijkstra with H3 hierarchy-based pruning.
+Enhanced bidirectional search with H3 spatial hierarchy pruning.
 
 ## Overview
 
-This algorithm extends the classic approach by adding H3 spatial pruning. Before searching, it computes the **high cell** — the lowest common ancestor (LCA) of source and target H3 cells — and prunes nodes that lie outside this region.
+This algorithm extends the classic approach by adding **H3 spatial pruning**. Before searching, it computes the **high cell** — the lowest common ancestor (LCA) of source and target H3 cells — and prunes nodes outside this region.
+
+> [!NOTE]
+> **H3-Based Hierarchical Routing**
+> 
+> This is NOT standard Contraction Hierarchies (CH). The hierarchy comes from H3 hexagonal grid resolutions (0-15), not node contraction order.
 
 ## Key Difference from Classic
 
