@@ -9,7 +9,7 @@ This algorithm extends the classic approach by adding **H3 spatial pruning**. Be
 > [!NOTE]
 > **H3-Based Hierarchical Routing**
 > 
-> This is NOT standard Contraction Hierarchies (CH). The hierarchy comes from H3 hexagonal grid resolutions (0-15), not node contraction order.
+> The hierarchy comes from H3 hexagonal grid resolutions (0-15). Coarser cells (lower resolution) are "higher" in the hierarchy.
 
 ## Key Difference from Classic
 

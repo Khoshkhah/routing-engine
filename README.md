@@ -1,15 +1,10 @@
 # Routing Engine
 
-A Python query engine for shortest path routing on **H3 Spatial Hierarchy** shortcuts.
+A Python query engine for shortest path routing using H3 spatial hierarchy.
 
 ## Overview
 
-This project implements bidirectional search algorithms for querying precomputed hierarchical shortcuts. The hierarchy is based on **H3 hexagonal grid resolutions** (not node contraction like traditional CH).
-
-> [!NOTE]
-> **Not Contraction Hierarchies (CH)**
-> 
-> This uses H3 spatial tree decomposition instead of node contraction order. See [tree_decomposition.md](../shortcuts-generation/docs/tree_decomposition.md) for theory.
+This project implements bidirectional Dijkstra search algorithms for querying precomputed shortcuts. It serves as a Python prototype before production C++ implementation.
 
 **Input**: Shortcut Parquet files from [shortcuts-generation](../shortcuts-generation)
 
@@ -45,25 +40,16 @@ jupyter notebook notebooks/routing_prototype.ipynb
 
 ## Algorithms
 
-| Algorithm | Description | Speedup |
-|-----------|-------------|---------|
-| **One-to-One Classic** | Bidirectional Dijkstra with `inside` filtering | Baseline |
-| **One-to-One Pruned** | + H3 hierarchy `parent_check` + early termination | 1.3-2x |
-| **Many-to-Many** | Multi-source/target initialization | N/A |
-
-### Inside Values
-
-| Value | Meaning | Used By |
-|-------|---------|---------|
-| `+1` | Upward shortcut (to coarser cell) | Forward search |
-| `0` | Lateral shortcut (same level) | Backward @ high_cell |
-| `-1` | Downward shortcut (to finer cell) | Backward search |
-| `-2` | Edge shortcut (direct edge) | Backward for globals |
+| Algorithm | Description | Use Case |
+|-----------|-------------|----------|
+| **One-to-One Classic** | Bidirectional Dijkstra with `inside` filtering | Single source/target |
+| **One-to-One Pruned** | + H3 hierarchy `parent_check` pruning | Faster single queries |
+| **Many-to-Many** | Multi-source/target initialization | KNN routing |
 
 ## Related Projects
 
 | Project | Role |
 |---------|------|
 | [osm-to-road-network](../osm-to-road-network) | OSM → Road graph |
-| [shortcuts-generation](../shortcuts-generation) | Graph → CH shortcuts |
+| [shortcuts-generation](../shortcuts-generation) | Graph → Shortcuts |
 | **routing-engine** (this) | Query engine |

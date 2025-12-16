@@ -7,13 +7,11 @@ Bidirectional search on H3 spatial hierarchy shortcuts.
 This algorithm finds the shortest path between a single source edge and target edge using bidirectional search with `inside` directional filtering.
 
 > [!NOTE]
-> **Not Standard Bidirectional Dijkstra or CH**
+> **H3-Based Hierarchical Routing**
 > 
-> This algorithm differs from standard approaches:
-> - **vs Bidirectional Dijkstra**: Uses `inside` constraints rather than unfiltered edges
-> - **vs Contraction Hierarchies (CH)**: Uses H3 spatial hierarchy instead of node contraction order
-> 
-> It's best described as **H3-based Hierarchical Routing** or **Spatial Tree Decomposition Routing**.
+> This algorithm uses H3 spatial cells as the hierarchy instead of node contraction order.
+> - **Forward search**: Only `inside=+1` (upward to coarser cells)
+> - **Backward search**: Only `inside≤0` (downward/lateral)
 
 ```
          Source                              Target
@@ -25,14 +23,6 @@ This algorithm finds the shortest path between a single source edge and target e
     │ (inside=+1)  │      Point        │ (inside≤0)   │
     └──────────────┘                   └──────────────┘
 ```
-
-## Key Differences from Standard Algorithms
-
-| Feature | Standard Bidirectional Dijkstra | CH | This Algorithm |
-|---------|--------------------------------|-----|----------------|
-| Step selection | min(fwd, bwd) alternates | min(fwd, bwd) | Both fwd AND bwd each iteration |
-| Edge filtering | None | "Upward" to higher-rank nodes | `inside` values (+1, 0, -1) |
-| Hierarchy source | None | Node contraction order | H3 spatial cells |
 
 ## Algorithm
 
